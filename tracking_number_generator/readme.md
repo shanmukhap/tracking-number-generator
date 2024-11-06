@@ -5,8 +5,6 @@ The API will generate unique tracking numbers based on the provided parameters l
 
 Step 1: Set up the Spring Boot Project
 
-Create the project using Spring Boot.
-
 Project: Maven Project
 Language: Java
 Spring Boot Version: Latest
@@ -20,37 +18,23 @@ Spring Data JPA
 
 Step 2: Design the API Endpoint
 
-TrackingNumber Controller: The main endpoint /next-tracking-number will receive the query parameters and return the generated tracking number.
+TrackingNumber Controller: The main endpoint /next-tracking-number will receive the query parameters and return the generated tracking number as TrackingNumberResponse.
 
-TrackingNumberResponse (for API response format):
+Step 3: Implement Tracking Number Generation Logic in TrackingNumberService
 
-Step 3: Implement Tracking Number Generation Logic
-
-TrackingNumberService:
-
-This approach generates a unique tracking number by hashing the combined input string. The first 16 characters of the hash are used to form the tracking number, ensuring it matches the regex pattern.
+This approach generates a unique tracking number by hashing the combined input string. The first 16 characters of the hash are used to form the tracking number.
 
 Step 4: Handling Concurrency and Uniqueness
 
 To ensure uniqueness, we can leverage a distributed unique ID generation system like UUID or an external system like Redis. In this case, using Redis is a good approach for horizontal scalability.
 
-Using Redis for Distributed Locking (if scalability is required):
-
-Redis can be used to store the generated tracking numbers and ensure that no duplicate values are created.
-
-Redis Service (for ensuring uniqueness):
+Redis can be used to store the generated tracking numbers and ensure that no duplicate values are created by Redis Service.
 
 Step 5: Testing and Deployment
 
 Unit Tests: Can use JUnit and Mockito to write unit tests for the TrackingNumberService and TrackingNumberController.
 
 Integration Testing: Can test the API endpoint with different combinations of input parameters to ensure correct behavior.
-
-Step 6: Final Notes
-
-Scalability Considerations: For handling high concurrency, using Redis or a similar distributed cache/store for unique IDs is key to scaling horizontally.
-
-Load Balancing: If deploying across multiple instances, systems should be stateless (no dependent on local server state).
 
 Testing: Can perform load testing using tools like JMeter to verify that the system can handle high loads.
 
