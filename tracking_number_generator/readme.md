@@ -5,7 +5,7 @@ The API will generate unique tracking numbers based on the provided parameters l
 
 Step 1: Set up the Spring Boot Project
 
-Project: Maven Project
+Project: Maven Project/
 Language: Java
 Spring Boot Version: Latest
 Packaging: Jar
